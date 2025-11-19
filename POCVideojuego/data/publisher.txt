@@ -1,0 +1,6 @@
+111,Ubisoft,Europa,75000.0,false
+222,Rockstar Games,EEUU,79000.0,false
+333,Nintendo,Japón,40800.0,false
+444,EA,Reino Unido,89000.0,false
+555,Steam,Europa,29800.0,false
+666,BVB,Asia,34222.0,false

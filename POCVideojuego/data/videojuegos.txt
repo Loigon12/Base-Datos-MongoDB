@@ -1,0 +1,7 @@
+1512,Lol,Disponible,false,120000.0,555
+73983,Mario Bros 64,Disponible,false,35000.0,333
+9063,FIFA 25,Disponible,false,350000.0,444
+6346,GTA VI,No disponible,false,250000.0,222
+89023,Fall Guys,Disponible,false,30000.0,555
+63461,Assassin´s Creed Shadows,Disponible,false,153000.0,111
+4325,AAA,Disponible,false,244444.0,111
