@@ -149,10 +149,10 @@ public class ListarGenero extends javax.swing.JPanel {
     boolean ok = ServiciosGenero.eliminarGenero(codigoPublisher, nombreGenero);
     
     if (ok) {
-        JOptionPane.showMessageDialog(this, "✅ Género eliminado con éxito.");
-        cargarDatos(); // ✅ Refresca la tabla
+        JOptionPane.showMessageDialog(this, "Género eliminado con éxito.");
+        cargarDatos(); // Refresca la tabla
     } else {
-        JOptionPane.showMessageDialog(this, "❌ No se pudo eliminar el género.\n"
+        JOptionPane.showMessageDialog(this, "No se pudo eliminar el género.\n"
             + "Verifica que exista y que el Publisher esté activo.");
     }
     }//GEN-LAST:event_btnEliminarVActionPerformed
@@ -170,7 +170,7 @@ public final void cargarDatos() {
             g.getIdGenero(),
             g.getNombre(),
             g.getCalificacion(),
-            // ❌ CORRECCIÓN: Cambiar g.getCodigoPub() por g.getCodigoPublisher()
+            // CORRECCIÓN: Cambiar g.getCodigoPub() por g.getCodigoPublisher()
             g.getCodigoPublisher() 
         });
     }

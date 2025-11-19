@@ -22,13 +22,13 @@ public class ServiciosPublisher {
 
     private static final String COLLECTION_NAME = "publishers";
 
-    // ✅ Obtén colección tipada como Publisher (gracias al PojoCodecProvider)
+    // Obtén colección tipada como Publisher (gracias al PojoCodecProvider)
     private static MongoCollection<Publisher> getCollection() {
         MongoDatabase db = MongoDBConnection.getInstance().getDatabase();
         return db.getCollection(COLLECTION_NAME, Publisher.class);
     }
 
-    // ✅ Agregar (MongoDB generará _id: ObjectId automáticamente si id == null)
+    // Agregar (MongoDB generará _id: ObjectId automáticamente si id == null)
     public static boolean agregarPublisher(Publisher pb) {
         if (pb == null || pb.getCodigoPublisher() <= 0) return false;
         if (buscarPublisher(pb.getCodigoPublisher()) != null) return false;
@@ -54,7 +54,7 @@ public class ServiciosPublisher {
         return lista;
     }
 
-    // ✅ Buscar por codigoPublisher (campo normal), NO por _id
+    // Buscar por codigoPublisher (campo normal), NO por _id
     public static Publisher buscarPublisher(int codigoPublisher) {
         try {
             return getCollection().find(Filters.eq("codigoPublisher", codigoPublisher)).first();
@@ -95,7 +95,7 @@ public class ServiciosPublisher {
         }
     }
 
-    // ✅ Métodos de negocio: ahora usamos colección como Document para agregados
+    // Métodos de negocio: ahora usamos colección como Document para agregados
     private static MongoCollection<Document> getCollectionAsDocument() {
         MongoDatabase db = MongoDBConnection.getInstance().getDatabase();
         return db.getCollection(COLLECTION_NAME, Document.class);

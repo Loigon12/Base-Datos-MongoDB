@@ -225,7 +225,7 @@ public class ListarVideojuego extends javax.swing.JPanel {
             String estadoMostrar = (v.getEstado() == null || v.getEstado().trim().isEmpty())
                     ? "Disponible" : v.getEstado();
 
-            // ?Buscar el nombre del publisher (solo para mostrar)
+            // Buscar el nombre del publisher (solo para mostrar)
             Publisher pb = ServiciosPublisher.buscarPublisher(v.getCodigoPublisher());
             String nombrePublisher = (pb != null) ? pb.getNombre() : "Desconocido";
             // Usamos v.getCodigoPublisher() directamente — no depende de pb
@@ -236,7 +236,7 @@ public class ListarVideojuego extends javax.swing.JPanel {
                 v.getNombre(),
                 v.getPrecio(),
                 estadoMostrar,
-                codigoPublisher, // ← ¡seguro!
+                codigoPublisher, // ← seguro
                 nombrePublisher, // ← puede ser "Desconocido"
                 "Editar/Alternar"
             });

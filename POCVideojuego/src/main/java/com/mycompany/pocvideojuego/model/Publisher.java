@@ -8,15 +8,15 @@ import org.bson.types.ObjectId;
 import java.util.List;
 
 public class Publisher {
-    private ObjectId id; // → será _id en MongoDB
-    private int codigoPublisher; // → campo normal
+    private ObjectId id; 
+    private int codigoPublisher; 
     private String nombre;
     private String region;
     private double precioSuscripcion;
     private String enServicio;
     private List<Genero> generos;
 
-    public Publisher() {} // ✅ obligatorio
+    public Publisher() {} 
 
     public Publisher(int codigoPublisher, String nombre, String region, double precioSuscripcion, String enServicio) {
         this.codigoPublisher = codigoPublisher;
@@ -26,7 +26,7 @@ public class Publisher {
         this.enServicio = enServicio;
     }
 
-    // ✅ Getters y setters para TODOS los campos
+    // Getters y setters para TODOS los campos
     public ObjectId getId() { return id; }
     public void setId(ObjectId id) { this.id = id; }
 

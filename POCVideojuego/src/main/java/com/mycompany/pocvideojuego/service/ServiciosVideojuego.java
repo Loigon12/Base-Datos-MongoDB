@@ -48,7 +48,7 @@ public class ServiciosVideojuego {
         }
         vj.setPublisherId(pub.getId()); // Asignar ObjectId
 
-        // ?Paso 2: Si tiene codigoVenta > 0, buscar Venta
+        // Paso 2: Si tiene codigoVenta > 0, buscar Venta
         if (vj.getCodigoVenta() > 0) {
             Venta vta = ServiciosVenta.buscarVenta(vj.getCodigoVenta());
             if (vta == null || vta.getId() == null) {
@@ -141,7 +141,7 @@ public class ServiciosVideojuego {
         }
     }
 
-    // ✅ Métodos de negocio
+    // Métodos de negocio
     public static List<Videojuego> listarPorPublisher(ObjectId publisherId) {
         List<Videojuego> lista = new ArrayList<>();
         try {

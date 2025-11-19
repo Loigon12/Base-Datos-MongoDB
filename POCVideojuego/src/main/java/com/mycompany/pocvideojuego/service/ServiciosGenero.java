@@ -25,14 +25,14 @@ public class ServiciosGenero {
 
     private static final String PUBLISHERS_COLLECTION = "publishers";
 
-    // ✅ Convierte Genero → Document (para embeber)
+    // Convierte Genero → Document (para embeber)
     private static Document toDocument(Genero g) {
         return new Document("_id", g.getIdGenero())
                 .append("nombre", g.getNombre())
                 .append("calificacion", g.getCalificacion());
     }
 
-    // ✅ Convierte Document → Genero
+    // Convierte Document → Genero
     private static Genero toGenero(Document doc, int codigoPublisher) {
         Genero g = new Genero();
         g.setIdGenero(doc.getInteger("_id"));
@@ -42,14 +42,14 @@ public class ServiciosGenero {
         return g;
     }
 
-    // ✅ Agregar género a un publisher existente
+    // Agregar género a un publisher existente
     public static boolean agregarGenero(int codigoPublisher, Genero genero) {
         if (genero == null || codigoPublisher <= 0) return false;
         try {
             MongoDatabase db = MongoDBConnection.getInstance().getDatabase();
             MongoCollection<Document> coll = db.getCollection(PUBLISHERS_COLLECTION);
 
-            Bson filter = Filters.eq("codigoPublisher", codigoPublisher); // ✅ busca por campo normal
+            Bson filter = Filters.eq("codigoPublisher", codigoPublisher); 
             Bson update = Updates.push("generos", toDocument(genero));
 
             UpdateResult res = coll.updateOne(filter, update);
@@ -60,7 +60,7 @@ public class ServiciosGenero {
         }
     }
 
-    // ✅ Listar géneros de un publisher
+    // Listar géneros de un publisher
     public static List<Genero> listarGenerosPorPublisher(int codigoPublisher) {
         List<Genero> lista = new ArrayList<>();
         try {
@@ -80,7 +80,7 @@ public class ServiciosGenero {
         return lista;
     }
 
-    // ✅ Buscar género por nombre dentro de un publisher
+    // Buscar género por nombre dentro de un publisher
     public static Genero buscarGeneroPorNombre(int codigoPublisher, String nombre) {
         try {
             MongoDatabase db = MongoDBConnection.getInstance().getDatabase();
@@ -105,7 +105,7 @@ public class ServiciosGenero {
         return null;
     }
 
-    // ✅ Actualizar género
+    // Actualizar género
     public static boolean actualizarGenero(int codigoPublisher, String nombreAnterior, Genero nuevo) {
         if (nuevo == null || nombreAnterior == null) return false;
         try {
@@ -127,7 +127,7 @@ public class ServiciosGenero {
         }
     }
 
-    // ✅ Eliminar género
+    // Eliminar género
     public static boolean eliminarGenero(int codigoPublisher, String nombre) {
         try {
             MongoDatabase db = MongoDBConnection.getInstance().getDatabase();
@@ -144,7 +144,7 @@ public class ServiciosGenero {
         }
     }
 
-    // ✅ Buscar género por ID (busca en todos los publishers)
+    // Buscar género por ID (busca en todos los publishers)
     public static Genero buscarGeneroPorId(int idGenero) {
         List<Publisher> publishers = ServiciosPublisher.listarPublisher();
         for (Publisher pub : publishers) {
@@ -168,12 +168,12 @@ public class ServiciosGenero {
             if (doc.containsKey("generos")) {
                 @SuppressWarnings("unchecked")
                 List<Document> generosList = (List<Document>) doc.get("generos");
-                // ✅ Usa "codigoPublisher", NO "_id"
+                // Usa "codigoPublisher", NO "_id"
                 int codigoPublisher = doc.getInteger("codigoPublisher");
 
                 for (Document gDoc : generosList) {
                     Genero g = new Genero();
-                    g.setIdGenero(gDoc.getInteger("_id")); // ← aquí sí es int, porque tú lo pusiste así
+                    g.setIdGenero(gDoc.getInteger("_id")); 
                     g.setNombre(gDoc.getString("nombre"));
                     g.setCalificacion(gDoc.getInteger("calificacion"));
                     g.setCodigoPublisher(codigoPublisher);

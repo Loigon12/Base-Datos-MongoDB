@@ -27,21 +27,21 @@ public class ServiciosVenta {
 
     private static final String COLLECTION_NAME = "ventas";
 
-    // ✅ Document ← Venta (_id = ObjectId generado por MongoDB)
+    // Document ← Venta (_id = ObjectId generado por MongoDB)
     private static Document toDocument(Venta v) {
         return new Document()
                 .append("codigoVenta", v.getCodigoVenta())
                 .append("fecha", v.getFecha() != null ? v.getFecha() : new Date())
                 .append("cliente", v.getCliente())
                 .append("totalVenta", v.getTotalVenta());
-                // ⚠️ NO incluimos _id → MongoDB lo genera al insertar
+                
     }
 
-    // ✅ Venta ← Document
+    // Venta ← Document
     private static Venta toVenta(Document doc) {
         if (doc == null) return null;
         Venta v = new Venta();
-        v.setId(doc.getObjectId("_id")); // ✅ ObjectId
+        v.setId(doc.getObjectId("_id")); 
         v.setCodigoVenta(doc.getInteger("codigoVenta"));
         v.setFecha(doc.getDate("fecha"));
         v.setCliente(doc.getString("cliente"));
@@ -49,7 +49,7 @@ public class ServiciosVenta {
         return v;
     }
 
-    // ✅ CRUD
+    // CRUD
     public static boolean agregarVenta(Venta v) {
         if (v == null || v.getCodigoVenta() <= 0) return false;
         if (buscarVenta(v.getCodigoVenta()) != null) return false; // duplicado
@@ -57,7 +57,7 @@ public class ServiciosVenta {
         try {
             MongoDatabase db = MongoDBConnection.getInstance().getDatabase();
             MongoCollection<Document> coll = db.getCollection(COLLECTION_NAME);
-            coll.insertOne(toDocument(v)); // ✅ _id generado automáticamente
+            coll.insertOne(toDocument(v)); // _id generado automáticamente
             return true;
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -124,7 +124,7 @@ public class ServiciosVenta {
         }
     }
 
-    // ✅ Métodos de negocio
+    // Métodos de negocio
     public static double totalPorCliente(String cliente) {
         try {
             MongoDatabase db = MongoDBConnection.getInstance().getDatabase();
