@@ -38,7 +38,7 @@ public class MongoDBConnection {
 
         this.mongoClient = MongoClients.create(settings);
         this.database = mongoClient.getDatabase(DB_NAME);
-        System.out.println("✅ Conectado a MongoDB 4.x con PojoCodecProvider");
+        System.out.println("Conectado a MongoDB");
     }
 
     public static MongoDBConnection getInstance() {
